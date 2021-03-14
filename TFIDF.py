@@ -256,7 +256,16 @@ def matching_score(k, query, tf_idf):
 
     return result
 
-
+def tf_idf_library(document):
+    """
+    this function calculates the tf_idf of given documents.
+    document: dataset with the format ["today is a good day", "machine learning and cyber security"]
+    """
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    tfIdfVectorizer=TfidfVectorizer(use_idf=True)
+    tfIdf = tfIdfVectorizer.fit_transform(document)
+    df = pd.DataFrame(tfIdf[0].T.todense(), index=tfIdfVectorizer.get_feature_names(), columns=["TF-IDF"])
+    df = df.sort_values('TF-IDF', ascending=False)
 if __name__ == '__main__':
-    # run()
+    run()
     matching_score(5, "paypal, please login with your email and password credit card number", TF_IDF)
