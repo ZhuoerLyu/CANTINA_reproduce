@@ -266,6 +266,7 @@ def tf_idf_library(document):
     tfIdf = tfIdfVectorizer.fit_transform(document)
     df = pd.DataFrame(tfIdf[0].T.todense(), index=tfIdfVectorizer.get_feature_names(), columns=["TF-IDF"])
     df = df.sort_values('TF-IDF', ascending=False)
+    return df
 if __name__ == '__main__':
     run()
     matching_score(5, "paypal, please login with your email and password credit card number", TF_IDF)
